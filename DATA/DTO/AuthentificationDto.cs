@@ -14,5 +14,7 @@ namespace DATA.DTO
         public string Password { get; set; }
 
         public List<PasswordHistoricDto> PasswordHistoricCollection { get; set; }
+
+        public UserDto User { get; set; }
     }
 }
