@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using DATA.DAL.Entities;
+﻿using BLL.Mappers;
 using DATA.DAL.Repositories;
 using DATA.DTO;
 
 namespace BLL.Services
 {
-    public class AddressService
+    public class AddressService : IAddressService
     {
         private readonly IAddressRepository _addressRepository;
 
@@ -17,47 +15,84 @@ namespace BLL.Services
 
         public AddressDto GetAddressById(int addressId)
         {
-            Address address = _addressRepository.GetAddressById(addressId);
-            return AddressMapper.MapToDto(address);
+            try
+            {
+                var address = _addressRepository.GetAddressById(addressId);
+                if (address == null)
+                {
+                    throw new Exception($"Adresse avec l'ID {addressId} non trouvée.");
+                }
+                return AddressMapper.MapToDto(address);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Une erreur est survenue lors de la récupération de l'adresse.", ex);
+            }
         }
 
         public List<AddressDto> GetAllAddresses()
         {
-            List<Address> addresses = _addressRepository.GetAllAddresses();
-            return AddressMapper.MapToDtoList(addresses);
+            try
+            {
+                var addresses = _addressRepository.GetAllAddresses();
+                return addresses.Select(address => AddressMapper.MapToDto(address)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Une erreur est survenue lors de la récupération des adresses.", ex);
+            }
         }
 
         public AddressDto CreateAddress(AddressDto addressDto)
         {
-            Address address = AddressMapper.MapToEntity(addressDto);
-            address = _addressRepository.CreateAddress(address);
-            return AddressMapper.MapToDto(address);
+            try
+            {
+                var address = AddressMapper.MapToEntity(addressDto);
+                var createdAddress = _addressRepository.CreateAddress(address);
+                return AddressMapper.MapToDto(createdAddress);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Une erreur est survenue lors de la création de l'adresse.", ex);
+            }
         }
 
         public AddressDto UpdateAddress(AddressDto addressDto)
         {
-            Address existingAddress = _addressRepository.GetAddressById(addressDto.IdAddress);
-
-            if (existingAddress == null)
+            try
             {
-                throw new Exception("Address not found");
-            }
+                var existingAddress = _addressRepository.GetAddressById(addressDto.IdAddress);
+                if (existingAddress == null)
+                {
+                    throw new Exception($"Adresse avec l'ID {addressDto.IdAddress} non trouvée.");
+                }
 
-            Address updatedAddress = AddressMapper.MapToEntity(addressDto);
-            updatedAddress = _addressRepository.UpdateAddress(updatedAddress);
-            return AddressMapper.MapToDto(updatedAddress);
+                var updatedAddress = AddressMapper.MapToEntity(addressDto);
+                updatedAddress = _addressRepository.UpdateAddress(updatedAddress);
+                return AddressMapper.MapToDto(updatedAddress);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Une erreur est survenue lors de la mise à jour de l'adresse.", ex);
+            }
         }
 
         public void DeleteAddress(int addressId)
         {
-            Address existingAddress = _addressRepository.GetAddressById(addressId);
-
-            if (existingAddress == null)
+            try
             {
-                throw new Exception("Address not found");
-            }
+                var address = _addressRepository.GetAddressById(addressId);
+                if (address == null)
+                {
+                    throw new Exception($"Adresse avec l'ID {addressId} non trouvée.");
+                }
 
-            _addressRepository.DeleteAddress(existingAddress);
+                _addressRepository.DeleteAddress(address);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Une erreur est survenue lors de la suppression de l'adresse.", ex);
+            }
         }
     }
 }

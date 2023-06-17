@@ -7,8 +7,8 @@ namespace BLL.Services
     {
         AddressDto GetAddressById(int addressId);
         List<AddressDto> GetAllAddresses();
-        void CreateAddress(AddressDto addressDto);
-        void UpdateAddress(AddressDto addressDto);
+        AddressDto CreateAddress(AddressDto addressDto);
+        AddressDto UpdateAddress(AddressDto addressDto);
         void DeleteAddress(int addressId);
     }
 }
