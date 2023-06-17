@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "h/stRnhy8Hu8uhVOj2rtTpG9TRPAJx88ND+B+AQYdo8+5TdcksU5CPvFM0V8/ClAu4VPW7BoLxXQFahaQ9ruUQ==",
+  "dgSpecHash": "3Ybpj3qBzIvx/3ukwvis3wbRN3vBxBe0EhtI1JusNgPLzitt92b1QHBwTNMajhhP0YwtHln8jkKqBCae6s4Z9A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lucie\\source\\repos\\PlantIt\\BLL\\BLL.csproj",
   "expectedPackageFiles": [
@@ -44,6 +44,7 @@
     "C:\\Users\\Lucie\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\Lucie\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\Lucie\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
+    "C:\\Users\\Lucie\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\Lucie\\.nuget\\packages\\system.configuration.configurationmanager\\5.0.0\\system.configuration.configurationmanager.5.0.0.nupkg.sha512",
     "C:\\Users\\Lucie\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.0\\system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
     "C:\\Users\\Lucie\\.nuget\\packages\\system.drawing.common\\5.0.0\\system.drawing.common.5.0.0.nupkg.sha512",
