@@ -524,7 +524,7 @@ public partial class PlantItContext : DbContext
             entity.HasIndex(e => e.IdAuthentification, "fk_user_authentification1_idx");
 
             entity.Property(e => e.IdUser).HasColumnName("id_user");
-            entity.Property(e => e.IdAuthentification).HasColumnName("authentification_id");
+            entity.Property(e => e.IdAuthentification).HasColumnName("id_authentification");
             entity.Property(e => e.Degree)
                 .HasMaxLength(30)
                 .IsUnicode(false)
@@ -556,6 +556,11 @@ public partial class PlantItContext : DbContext
                 .HasForeignKey<Address>(d => d.IdAddress)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_User_Address1");
+
+            entity.HasOne(d => d.Authentification).WithOne(p => p.User)
+                .HasForeignKey<Authentification>(d => d.IdAuthentification)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_User_Authentification1");
 
             entity.HasOne(d => d.UserType).WithMany(p => p.UserCollection)
                 .HasForeignKey(d => d.IdUserType)
