@@ -15,7 +15,7 @@ namespace BLL.Mappers
                 Way = address.Way,
                 AdditionalAddress = address.AdditionalAddress,
                 Town = address.Town,
-                User = UserMapper.MapToDto(address.User)
+                User = address.User != null ? UserMapper.MapToDto(address.User) : null
             };
         }
 
@@ -29,7 +29,7 @@ namespace BLL.Mappers
                 Way = addressDto.Way,
                 AdditionalAddress = addressDto.AdditionalAddress,
                 Town = addressDto.Town,
-                User = UserMapper.MapToEntity(addressDto.User)
+                User = addressDto.User != null ? UserMapper.MapToEntity(addressDto.User) : null
             };
         }
     }
