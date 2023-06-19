@@ -12,6 +12,7 @@ public partial class PlantItContext : DbContext
     public PlantItContext(DbContextOptions<PlantItContext> options)
         : base(options)
     {
+        ChangeTracker.LazyLoadingEnabled = true;
     }
 
     public virtual DbSet<Address> Addresses { get; set; }
@@ -82,7 +83,7 @@ public partial class PlantItContext : DbContext
 
         modelBuilder.Entity<Authentification>(entity =>
         {
-            entity.HasKey(e => e.IdAuthentification).HasName("PK_authentification_id");
+            entity.HasKey(e => e.IdAuthentification).HasName("PK_authentification_id_authentification");
 
             entity.ToTable("authentification");
 
