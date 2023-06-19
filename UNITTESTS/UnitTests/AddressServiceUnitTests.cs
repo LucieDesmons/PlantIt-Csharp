@@ -1,10 +1,8 @@
 using BLL.Mappers;
 using BLL.Services;
-using DATA.DAL.DbContextt;
 using DATA.DAL.Entities;
 using DATA.DAL.Repositories;
 using DATA.DTO;
-using Microsoft.EntityFrameworkCore;
 using Moq;
 
 namespace UNITTESTS.UnitTests
@@ -12,14 +10,12 @@ namespace UNITTESTS.UnitTests
     [TestFixture]
     public class AddressServiceUnitTests
     {
-        private PlantItContext _dbContext;
         private IAddressRepository _addressRepository;
         private AddressService _addressService;
 
         [SetUp]
         public void Setup()
         {
-            _dbContext = new PlantItContext();
             _addressRepository = Mock.Of<IAddressRepository>();
             _addressService = new AddressService(_addressRepository);
         }
