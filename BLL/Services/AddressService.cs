@@ -47,9 +47,8 @@ namespace BLL.Services
         {
             try
             {
-                var address = AddressMapper.MapToEntity(addressDto);
-                var createdAddress = _addressRepository.CreateAddress(address);
-                return AddressMapper.MapToDto(createdAddress);
+                var createdAddress = _addressRepository.CreateAddress(AddressMapper.MapToEntity(addressDto));
+                return addressDto;
             }
             catch (Exception ex)
             {
@@ -67,9 +66,17 @@ namespace BLL.Services
                     throw new Exception($"Adresse avec l'ID {addressDto.IdAddress} non trouvée.");
                 }
 
-                var updatedAddress = AddressMapper.MapToEntity(addressDto);
-                updatedAddress = _addressRepository.UpdateAddress(updatedAddress);
-                return AddressMapper.MapToDto(updatedAddress);
+                // Appliquer les modifications du DTO à l'entité existante
+                // Ne pas mapper sinon cela créer une nouvelle instance de l'objet qui rentre en conflit avec EntityFramework
+                existingAddress.Number = addressDto.Number;
+                existingAddress.PostalCode = addressDto.PostalCode;
+                existingAddress.Way = addressDto.Way;
+                existingAddress.AdditionalAddress = addressDto.AdditionalAddress;
+                existingAddress.Town = addressDto.Town;
+
+                _addressRepository.UpdateAddress(existingAddress);
+
+                return addressDto;
             }
             catch (Exception ex)
             {
