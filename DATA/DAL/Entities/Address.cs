@@ -1,7 +1,10 @@
-﻿namespace DATA.DAL.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DATA.DAL.Entities;
 
 public partial class Address
 {
+    [Key]
     public int IdAddress { get; set; }
 
     public int? Number { get; set; }

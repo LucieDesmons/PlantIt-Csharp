@@ -1,7 +1,10 @@
-﻿namespace DATA.DAL.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DATA.DAL.Entities;
 
 public partial class Plant
 {
+    [Key]
     public int IdPlant { get; set; }
 
     public string? Name { get; set; }

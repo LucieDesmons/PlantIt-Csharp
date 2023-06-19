@@ -1,7 +1,10 @@
-﻿namespace DATA.DAL.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DATA.DAL.Entities;
 
 public partial class Authentification
 {
+    [Key]
     public int IdAuthentification { get; set; }
 
     public string? Email { get; set; }

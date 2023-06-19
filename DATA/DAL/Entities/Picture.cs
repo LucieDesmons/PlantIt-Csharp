@@ -1,7 +1,10 @@
-﻿namespace DATA.DAL.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DATA.DAL.Entities;
 
 public partial class Picture
 {
+    [Key]
     public int IdPicture { get; set; }
 
     public string? Path { get; set; }

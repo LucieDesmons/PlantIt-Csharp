@@ -1,7 +1,10 @@
-﻿namespace DATA.DAL.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DATA.DAL.Entities;
 
 public partial class User
 {
+    [Key]
     public int IdUser { get; set; }
 
     public string? Name { get; set; }
@@ -22,11 +25,11 @@ public partial class User
 
     public int IdAuthentification { get; set; }
 
-    public virtual Address Address { get; set; } = null!;
+    public virtual Address Address { get; set; } 
 
-    public virtual Authentification Authentification { get; set; } = null!;
+    public virtual Authentification Authentification { get; set; }
 
-    public virtual UserType UserType { get; set; } = null!;
+    public virtual UserType UserType { get; set; } 
 
     public virtual ICollection<BankDetail> BankDetailsCollection { get; set; } = new List<BankDetail>();
 

@@ -1,7 +1,10 @@
-﻿namespace DATA.DAL.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DATA.DAL.Entities;
 
 public partial class UserHistoric
 {
+    [Key]
     public int IdUserHistoric { get; set; }
 
     public int IdUser { get; set; }

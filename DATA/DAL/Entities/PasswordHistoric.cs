@@ -1,7 +1,10 @@
-﻿namespace DATA.DAL.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DATA.DAL.Entities;
 
 public partial class PasswordHistoric
 {
+    [Key]
     public int IdHistoric { get; set; }
 
     public string? Password { get; set; }
