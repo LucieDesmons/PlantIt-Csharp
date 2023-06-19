@@ -1,0 +1,17 @@
+C:\Users\Lucie\source\repos\PlantIt\UNITTESTS\bin\Debug\net6.0\TESTS.deps.json
+C:\Users\Lucie\source\repos\PlantIt\UNITTESTS\bin\Debug\net6.0\TESTS.dll
+C:\Users\Lucie\source\repos\PlantIt\UNITTESTS\bin\Debug\net6.0\TESTS.pdb
+C:\Users\Lucie\source\repos\PlantIt\UNITTESTS\bin\Debug\net6.0\BLL.dll
+C:\Users\Lucie\source\repos\PlantIt\UNITTESTS\bin\Debug\net6.0\DATA.dll
+C:\Users\Lucie\source\repos\PlantIt\UNITTESTS\bin\Debug\net6.0\BLL.pdb
+C:\Users\Lucie\source\repos\PlantIt\UNITTESTS\bin\Debug\net6.0\DATA.pdb
+C:\Users\Lucie\source\repos\PlantIt\UNITTESTS\obj\Debug\net6.0\TESTS.csproj.AssemblyReference.cache
+C:\Users\Lucie\source\repos\PlantIt\UNITTESTS\obj\Debug\net6.0\TESTS.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lucie\source\repos\PlantIt\UNITTESTS\obj\Debug\net6.0\TESTS.AssemblyInfoInputs.cache
+C:\Users\Lucie\source\repos\PlantIt\UNITTESTS\obj\Debug\net6.0\TESTS.AssemblyInfo.cs
+C:\Users\Lucie\source\repos\PlantIt\UNITTESTS\obj\Debug\net6.0\TESTS.csproj.CoreCompileInputs.cache
+C:\Users\Lucie\source\repos\PlantIt\UNITTESTS\obj\Debug\net6.0\TESTS.csproj.CopyComplete
+C:\Users\Lucie\source\repos\PlantIt\UNITTESTS\obj\Debug\net6.0\TESTS.dll
+C:\Users\Lucie\source\repos\PlantIt\UNITTESTS\obj\Debug\net6.0\refint\TESTS.dll
+C:\Users\Lucie\source\repos\PlantIt\UNITTESTS\obj\Debug\net6.0\TESTS.pdb
+C:\Users\Lucie\source\repos\PlantIt\UNITTESTS\obj\Debug\net6.0\ref\TESTS.dll
