@@ -6,7 +6,7 @@ using DATA.DTO;
 namespace TESTS.IntegrationTests
 {
     [TestFixture]
-    public class AddressServiceIntegrationTest
+    public class AddressServiceIntegrationTests
     {
         private PlantItContext _dbContext;
         private IAddressRepository _addressRepository;
@@ -27,10 +27,7 @@ namespace TESTS.IntegrationTests
             var result = _addressService.GetAddressById(existingAddressId);
 
             Assert.That(result, Is.Not.Null);
-            Assert.Multiple(() =>
-            {
-                Assert.That(result.IdAddress, Is.EqualTo(existingAddressId));
-            });
+            Assert.That(result.IdAddress, Is.EqualTo(existingAddressId));
 
             Console.WriteLine("Le test GetAddressById_ExistingAddressId_ReturnsAddressDto a réussi !");
             Console.WriteLine("Adresse récupérée :");
@@ -92,18 +89,16 @@ namespace TESTS.IntegrationTests
         [Test]
         public void DeleteAddress_ExistingAddressId_AddressIsDeleted()
         {
-            int existingAddressId = 10;
+            int existingAddressId = 13;
 
             _addressService.DeleteAddress(existingAddressId);
 
-            var deletedAddress = _addressRepository.GetAddressById(existingAddressId);
-            Assert.That(deletedAddress, Is.Null);
+            var ex = Assert.Throws<Exception>(() => _addressService.GetAddressById(existingAddressId));
+
+            Assert.That(ex.Message, Is.EqualTo($"Une erreur est survenue lors de la récupération de l'adresse."));
 
             Console.WriteLine("Le test DeleteAddress_ExistingAddressId_AddressIsDeleted a réussi !");
-            Console.WriteLine("L'adresse a bien été suprimée !");
+            Console.WriteLine($"L'adresse avec ID {existingAddressId} a bien été suprimée !");
         }
-
-
-
     }
 }
