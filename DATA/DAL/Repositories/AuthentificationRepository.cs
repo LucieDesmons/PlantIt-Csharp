@@ -7,6 +7,7 @@ namespace DATA.DAL.Repositories
     {
         Authentification GetAuthentificationById(int id);
         List<Authentification> GetAllAuthentifications();
+        Authentification GetAuthentificationByEmail(string email);
         Authentification CreateAuthentification(Authentification authentification);
         Authentification UpdateAuthentification(Authentification authentification);
         void DeleteAuthentification(Authentification authentification);
@@ -29,6 +30,11 @@ namespace DATA.DAL.Repositories
         public List<Authentification> GetAllAuthentifications()
         {
             return _dbContext.Authentifications.ToList();
+        }
+
+        public Authentification GetAuthentificationByEmail(string email)
+        {
+                return _dbContext.Authentifications.FirstOrDefault(a => a.Email == email);
         }
 
         public Authentification CreateAuthentification(Authentification authentification)
