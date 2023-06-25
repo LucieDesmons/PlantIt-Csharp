@@ -154,3 +154,4 @@ C:\Users\Lucie\source\repos\PlantIt\TESTS\obj\Debug\net6.0\refint\TESTS.dll
 C:\Users\Lucie\source\repos\PlantIt\TESTS\obj\Debug\net6.0\TESTS.pdb
 C:\Users\Lucie\source\repos\PlantIt\TESTS\obj\Debug\net6.0\TESTS.genruntimeconfig.cache
 C:\Users\Lucie\source\repos\PlantIt\TESTS\obj\Debug\net6.0\ref\TESTS.dll
+C:\Users\Lucie\source\repos\PlantIt\TESTS\bin\Debug\net6.0\BCrypt.Net-Next.dll

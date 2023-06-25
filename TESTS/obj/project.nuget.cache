@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "ONDHTU0nZBTqsY+gHbuqkVH7QTfbog5kgOS0/NqlL8eSs3BE1G+z7OhFLKiObmmQnUYlK2NHTaKMR0ovfrCG0Q==",
+  "dgSpecHash": "BR8POWojF5N/v5HDWeY13pyOi44o92TAuCScDT+N3U93jURkHpVbubvHBaL9SdHDcfrLcUW1owEi3rRpY6KGUg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lucie\\source\\repos\\PlantIt\\TESTS\\TESTS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lucie\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Lucie\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\Lucie\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Lucie\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\Lucie\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\Lucie\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
