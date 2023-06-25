@@ -3,7 +3,7 @@ using DATA.DTO;
 
 namespace BLL.Mappers
 {
-    public static class AuthentificationMapper
+    public static class AuthenticationMapper
     {
         public static AuthentificationDto MapToDto(Authentification authentification)
         {
@@ -12,8 +12,10 @@ namespace BLL.Mappers
                 IdAuthentification = authentification.IdAuthentification,
                 Email = authentification.Email,
                 Password = authentification.Password,
-                User = UserMapper.MapToDto(authentification.User),
-                PasswordHistoricCollection = authentification.PasswordHistoricCollection.Select(PasswordHistoricMapper.MapToDto).ToList()
+                User = authentification.User != null ? UserMapper.MapToDto(authentification.User) : null,
+                PasswordHistoricCollection = authentification.PasswordHistoricCollection != null
+                    ? authentification.PasswordHistoricCollection.Select(PasswordHistoricMapper.MapToDto).ToList()
+                    : null
             };
         }
 
@@ -24,8 +26,9 @@ namespace BLL.Mappers
                 IdAuthentification = authentificationDto.IdAuthentification,
                 Email = authentificationDto.Email,
                 Password = authentificationDto.Password,
-                User = UserMapper.MapToEntity(authentificationDto.User),
-                PasswordHistoricCollection = authentificationDto.PasswordHistoricCollection.Select(PasswordHistoricMapper.MapToEntity).ToList()
+                PasswordHistoricCollection = authentificationDto.PasswordHistoricCollection != null
+                    ? authentificationDto.PasswordHistoricCollection.Select(PasswordHistoricMapper.MapToEntity).ToList()
+                    : null
             };
         }
     }
