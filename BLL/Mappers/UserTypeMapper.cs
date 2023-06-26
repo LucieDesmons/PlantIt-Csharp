@@ -19,7 +19,6 @@ namespace BLL.Mappers
         {
             return new UserType
             {
-                IdUserType = userTypeDto.IdUserType,
                 Label = userTypeDto.Label,
                 UserCollection = userTypeDto.UserCollection.Select(UserMapper.MapToEntity).ToList()
             };

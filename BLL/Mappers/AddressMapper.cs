@@ -15,7 +15,6 @@ namespace BLL.Mappers
                 Way = address.Way,
                 AdditionalAddress = address.AdditionalAddress,
                 Town = address.Town,
-                User = address.User != null ? UserMapper.MapToDto(address.User) : null
             };
         }
 
@@ -23,13 +22,12 @@ namespace BLL.Mappers
         {
             return new Address
             {
-                IdAddress = addressDto.IdAddress,
+              //  IdAddress = addressDto.IdAddress,
                 Number = addressDto.Number,
                 PostalCode = addressDto.PostalCode,
                 Way = addressDto.Way,
                 AdditionalAddress = addressDto.AdditionalAddress,
                 Town = addressDto.Town,
-                User = addressDto.User != null ? UserMapper.MapToEntity(addressDto.User) : null
             };
         }
     }

@@ -23,7 +23,7 @@ namespace BLL.Mappers
         {
             return new Authentification
             {
-                IdAuthentification = authentificationDto.IdAuthentification,
+               // IdAuthentification = authentificationDto.IdAuthentification,
                 Email = authentificationDto.Email,
                 Password = authentificationDto.Password,
                 PasswordHistoricCollection = authentificationDto.PasswordHistoricCollection != null
