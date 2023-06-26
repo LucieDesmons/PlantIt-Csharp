@@ -48,8 +48,14 @@ public partial class PlantItContext : DbContext
     public virtual DbSet<UserType> UserTypes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+    {
+        optionsBuilder
+            .EnableSensitiveDataLogging();
+
+        #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=DESKTOP-2VS5454\\SQLEXPRESS;user id=sa; password=lucie;Initial Catalog=plant_it;TrustServerCertificate=true");
+    }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -92,7 +98,7 @@ public partial class PlantItContext : DbContext
             entity.HasIndex(e => e.Password, "AK_authentification_password_UNIQUE").IsUnique();
 
             entity.Property(e => e.IdAuthentification)
-                .ValueGeneratedNever()
+                .ValueGeneratedOnAdd()
                 .HasColumnName("id_authentification");
             entity.Property(e => e.Email)
                 .HasMaxLength(80)
@@ -113,7 +119,7 @@ public partial class PlantItContext : DbContext
             entity.HasIndex(e => e.IdUser, "fk_bank_details_user1_idx");
 
             entity.Property(e => e.IdBankDetails)
-                .ValueGeneratedNever()
+                .ValueGeneratedOnAdd()
                 .HasColumnName("id_bank_betails");
             entity.Property(e => e.Details)
                 .HasMaxLength(50)
@@ -553,8 +559,8 @@ public partial class PlantItContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("specialization");
 
-            entity.HasOne(d => d.Address).WithOne(p => p.User)
-                .HasForeignKey<Address>(d => d.IdAddress)
+            entity.HasOne(d => d.Address).WithMany()
+                .HasForeignKey(d => d.IdAddress)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_User_Address1");
 
