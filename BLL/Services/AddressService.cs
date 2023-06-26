@@ -48,6 +48,7 @@ namespace BLL.Services
             try
             {
                 var createdAddress = _addressRepository.CreateAddress(AddressMapper.MapToEntity(addressDto));
+                addressDto.IdAddress = createdAddress.IdAddress;
                 return addressDto;
             }
             catch (Exception ex)
