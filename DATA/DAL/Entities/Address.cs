@@ -16,6 +16,4 @@ public partial class Address
     public string? AdditionalAddress { get; set; }
 
     public string? Town { get; set; }
-
-    public virtual User User { get; set; }
 }

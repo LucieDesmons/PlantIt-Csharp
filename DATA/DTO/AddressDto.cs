@@ -13,7 +13,5 @@
         public string? AdditionalAddress { get; set; }
 
         public string? Town { get; set; }
-
-        public UserDto User { get; set; }
     }
 }
