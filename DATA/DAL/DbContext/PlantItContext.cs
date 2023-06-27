@@ -49,7 +49,7 @@ public partial class PlantItContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-2VS5454\\SQLEXPRESS;user id=sa; password=lucie;Initial Catalog=plant_it;TrustServerCertificate=true");
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-F9P6FR5;Database=plant_it;User Id=dev;Password=dev;Encrypt=False;Trusted_Connection=True;MultipleActiveResultSets=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -61,7 +61,8 @@ public partial class PlantItContext : DbContext
 
             entity.HasIndex(e => e.IdAddress, "AK_address_idAddress_UNIQUE").IsUnique();
 
-            entity.Property(e => e.IdAddress).HasColumnName("id_address");
+            entity.Property(e => e.IdAddress).HasColumnName("id_address")
+                .ValueGeneratedOnAdd();
             entity.Property(e => e.AdditionalAddress)
                 .HasMaxLength(80)
                 .IsUnicode(false)
@@ -92,7 +93,7 @@ public partial class PlantItContext : DbContext
             entity.HasIndex(e => e.Password, "AK_authentification_password_UNIQUE").IsUnique();
 
             entity.Property(e => e.IdAuthentification)
-                .ValueGeneratedNever()
+                .ValueGeneratedOnAdd()
                 .HasColumnName("id_authentification");
             entity.Property(e => e.Email)
                 .HasMaxLength(80)

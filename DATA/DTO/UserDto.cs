@@ -28,22 +28,22 @@
 
         public UserTypeDto UserType { get; set; }
 
-        public List<BankDetailDto> BankDetailsCollection { get; set; }
+        public List<BankDetailDto>? BankDetailsCollection { get; set; }
 
-        public List<ConversationDto> ConversationUser1Collection { get; set; }
+        public List<ConversationDto>? ConversationUser1Collection { get; set; }
 
-        public List<ConversationDto> ConversationUser2Collection { get; set; }
+        public List<ConversationDto>? ConversationUser2Collection { get; set; }
 
-        public List<CreatedByDto> CreatedByCollection { get; set; }
+        public List<CreatedByDto>? CreatedByCollection { get; set; }
 
-        public List<MaintenanceDto> MaintenanceCollection { get; set; }
+        public List<MaintenanceDto>? MaintenanceCollection { get; set; }
 
-        public List<ManageDto> ManageBotanistCollection { get; set; }
+        public List<ManageDto>? ManageBotanistCollection { get; set; }
 
-        public List<ManageDto> ManageCustomerCollection { get; set; }
+        public List<ManageDto>? ManageCustomerCollection { get; set; }
 
-        public List<PlantDto> PlantCollection { get; set; }
+        public List<PlantDto>? PlantCollection { get; set; }
 
-        public List<UserHistoricDto> UserHistoricCollection { get; set; }
+        public List<UserHistoricDto>? UserHistoricCollection { get; set; }
     }
 }

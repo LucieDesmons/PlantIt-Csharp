@@ -40,9 +40,6 @@ namespace BLL.Services
         {
             try
             {
-                // Hasher le mot de passe avant de l'enregistrer
-                authentificationDto.Password = HashPassword(authentificationDto.Password);
-
                 var authentification = AuthenticationMapper.MapToEntity(authentificationDto);
                 var createdAuthentification = _authenticationRepository.CreateAuthentification(authentification);
                 return AuthenticationMapper.MapToDto(createdAuthentification);
@@ -99,22 +96,6 @@ namespace BLL.Services
             }
         }
 
-        public AuthentificationDto Authenticate(string email, string password)
-        {
-            try
-            {
-                var authentification = _authenticationRepository.GetAuthentificationByEmail(email);
-                if (authentification == null || !BCrypt.Net.BCrypt.Verify(password, authentification.Password))
-                {
-                    throw new Exception("Email ou mot de passe incorrect.");
-                }
 
-                return AuthenticationMapper.MapToDto(authentification);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Une erreur est survenue lors de l'authentification.", ex);
-            }
-        }
     }
 }

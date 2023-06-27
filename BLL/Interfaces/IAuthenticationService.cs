@@ -11,7 +11,5 @@ namespace BLL.Interfaces
         AuthentificationDto UpdateAuthentification(AuthentificationDto authentificationDto);
 
         void DeleteAuthentification(int idAuthentification);
-
-        AuthentificationDto Authenticate(string email, string password);
     }
 }

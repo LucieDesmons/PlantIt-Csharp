@@ -14,6 +14,6 @@
 
         public string? Town { get; set; }
 
-        public UserDto User { get; set; }
+        public UserDto? User { get; set; }
     }
 }
