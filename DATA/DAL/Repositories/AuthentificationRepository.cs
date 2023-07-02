@@ -1,59 +1,59 @@
-﻿using DATA.DAL.DbContextt;
+﻿using DATA.DAL.Context;
 using DATA.DAL.Entities;
 
 namespace DATA.DAL.Repositories
 {
-    public interface IAuthentificationRepository
+    public interface IAuthenticationRepository
     {
-        Authentification GetAuthentificationById(int id);
-        List<Authentification> GetAllAuthentifications();
-        Authentification GetAuthentificationByEmail(string email);
-        Authentification CreateAuthentification(Authentification authentification);
-        Authentification UpdateAuthentification(Authentification authentification);
-        void DeleteAuthentification(Authentification authentification);
+        Authentication GetAuthenticationById(int id);
+        List<Authentication> GetAllAuthentications();
+        Authentication GetAuthenticationByEmail(string email);
+        Authentication CreateAuthentication(Authentication authentication);
+        Authentication UpdateAuthentication(Authentication authentication);
+        void DeleteAuthentication(Authentication authentication);
     }
 
-    public class AuthentificationRepository : IAuthentificationRepository
+    public class AuthenticationRepository : IAuthenticationRepository
     {
         private readonly PlantItContext _dbContext;
 
-        public AuthentificationRepository(PlantItContext dbContext)
+        public AuthenticationRepository(PlantItContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public Authentification GetAuthentificationById(int id)
+        public Authentication GetAuthenticationById(int id)
         {
-            return _dbContext.Authentifications.Find(id);
+            return _dbContext.Authentications.Find(id);
         }
 
-        public List<Authentification> GetAllAuthentifications()
+        public List<Authentication> GetAllAuthentications()
         {
-            return _dbContext.Authentifications.ToList();
+            return _dbContext.Authentications.ToList();
         }
 
-        public Authentification GetAuthentificationByEmail(string email)
+        public Authentication GetAuthenticationByEmail(string email)
         {
-                return _dbContext.Authentifications.FirstOrDefault(a => a.Email == email);
+                return _dbContext.Authentications.FirstOrDefault(a => a.Email == email);
         }
 
-        public Authentification CreateAuthentification(Authentification authentification)
+        public Authentication CreateAuthentication(Authentication authentication)
         {
-            _dbContext.Authentifications.Add(authentification);
+            _dbContext.Authentications.Add(authentication);
             _dbContext.SaveChanges();
-            return authentification;
+            return authentication;
         }
 
-        public Authentification UpdateAuthentification(Authentification authentification)
+        public Authentication UpdateAuthentication(Authentication authentication)
         {
-            _dbContext.Authentifications.Update(authentification);
+            _dbContext.Authentications.Update(authentication);
             _dbContext.SaveChanges();
-            return authentification;
+            return authentication;
         }
 
-        public void DeleteAuthentification(Authentification authentification)
+        public void DeleteAuthentication(Authentication authentication)
         {
-            _dbContext.Authentifications.Remove(authentification);
+            _dbContext.Authentications.Remove(authentication);
             _dbContext.SaveChanges();
         }
     }

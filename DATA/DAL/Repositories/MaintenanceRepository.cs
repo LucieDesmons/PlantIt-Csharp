@@ -1,4 +1,4 @@
-﻿using DATA.DAL.DbContextt;
+﻿using DATA.DAL.Context;
 using DATA.DAL.Entities;
 
 namespace DATA.DAL.Repositories

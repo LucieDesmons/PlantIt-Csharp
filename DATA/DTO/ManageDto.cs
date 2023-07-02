@@ -10,7 +10,7 @@
 
         public DateTime? EndDate { get; set; }
 
-        public UserDto Botanist{ get; set; }
+        public UserDto Botanist { get; set; }
 
         public UserDto Customer { get; set; }
     }

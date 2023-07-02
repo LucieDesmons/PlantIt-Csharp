@@ -8,8 +8,8 @@
 
         public DateTime? UpdateDate { get; set; }
 
-        public int IdAuthentification { get; set; }
+        public int IdAuthentication { get; set; }
 
-        public AuthentificationDto Authentification { get; set; }
+        public AuthenticationDto Authentication { get; set; }
     }
 }

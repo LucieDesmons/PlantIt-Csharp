@@ -1,7 +1,10 @@
-﻿namespace DATA.DAL.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DATA.DAL.Entities;
 
 public partial class Manage
 {
+    [Key]
     public int IdUserCustomer { get; set; }
 
     public int IdUserBotanist { get; set; }

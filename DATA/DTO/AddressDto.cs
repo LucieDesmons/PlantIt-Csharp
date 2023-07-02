@@ -13,5 +13,7 @@
         public string? AdditionalAddress { get; set; }
 
         public string? Town { get; set; }
+
+        public virtual ICollection<UserDto> UserCollection { get; set; } = new List<UserDto>();
     }
 }
