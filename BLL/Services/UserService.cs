@@ -1,5 +1,5 @@
 ﻿using BLL.Mappers;
-using DATA.DAL.DbContextt;
+using DATA.DAL.Context;
 using DATA.DAL.Entities;
 using DATA.DAL.Repositories;
 using DATA.DTO;
@@ -10,16 +10,11 @@ namespace BLL.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly PlantItContext _dbContext;
-        private readonly AddressService _addressService;
-        private readonly AuthenticationService _authenticationService;
 
-        public UserService(IUserRepository userRepository, AddressService addressService, AuthenticationService authenticationService)
+        public UserService(IUserRepository userRepository, PlantItContext dbContext)
         {
             _userRepository = userRepository;
-            _dbContext = new PlantItContext();
-            _addressService = addressService;
-            _authenticationService = authenticationService;
-
+            _dbContext = dbContext;
         }
 
         public UserDto GetUserById(int userId)
@@ -56,34 +51,22 @@ namespace BLL.Services
         {
             try
             {
-                // Créer les entités dépendantes (Address et Authentification)
-                AddressDto addressDto = _addressService.CreateAddress(userDto.Address);
-                AuthentificationDto authentificationDto = _authenticationService.CreateAuthentification(userDto.Authentification);
+                // Créez une entité d'authentification et stockez-la dans authenticationDto
 
-                // Imprimez les identifiants pour vérifier qu'ils sont corrects
-                Console.WriteLine($"ID de l'adresse après création: {addressDto.IdAddress}");
-                Console.WriteLine($"ID de l'authentification Dto: {authentificationDto.IdAuthentification}");
+                Address address = AddressMapper.MapToEntity(userDto.Address);
+                Authentication authentication = AuthenticationMapper.MapToEntity(userDto.Authentication);
 
-                // Vérifiez que les identifiants sont présents
-                if (addressDto.IdAddress == 0 || authentificationDto.IdAuthentification == 0)
-                {
-                    throw new Exception("L'adresse ou l'authentification n'a pas été correctement créée.");
-                }
-
-                // Assigner les entités créées à l'utilisateur DTO
-                userDto.Address = addressDto;
-                userDto.Authentification = authentificationDto;
+                // Assignez l'ID d'authentification à userDto.Authentication.IdAuthentication
+                userDto.Authentication.IdAuthentication = authentication.IdAuthentication;
+                userDto.Address.IdAddress = address.IdAddress;
 
                 // Mapper l'utilisateur
                 var user = UserMapper.MapToEntity(userDto);
 
-
-                Console.WriteLine($"ID de l'authentification entité: {user.IdAuthentification}");
+                Console.WriteLine($"ID de l'Authentication après création: {user.IdAuthentication} {user.IdAddress}");
 
                 // Ajouter l'utilisateur à la base de données
                 var createdUser = _userRepository.CreateUser(user);
-
-                Console.WriteLine($"ID de l'authentification après création: {createdUser.IdAuthentification}");
 
                 return createdUser;
             }
@@ -93,10 +76,7 @@ namespace BLL.Services
             }
         }
 
-
-
-
-        public User CreateCustomer(UserDto userDto)
+      /*  public User CreateCustomer(UserDto userDto)
         {
             var userTypeDto = new UserTypeDto
             {
@@ -107,7 +87,7 @@ namespace BLL.Services
             var user = CreateUser(userDto);
 
             return _userRepository.UpdateUser(user);
-        }
+        } */
 
         public User CreateBotanist(UserDto userDto)
         {
