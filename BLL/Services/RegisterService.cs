@@ -1,6 +1,6 @@
 ﻿using BLL.Interfaces;
 using BLL.Mappers;
-using DATA.DAL.DbContextt;
+using DATA.DAL.Context;
 using DATA.DAL.Entities;
 using DATA.DTO;
 using Microsoft.EntityFrameworkCore;
@@ -32,16 +32,16 @@ namespace BLL.Services
             _userService = userService;
         }
 
-        public async Task<AuthentificationDto> RegisterUser(RegisterModel model)
+        public async Task<AuthenticationDto> RegisterUser(RegisterModel model)
         {
             try
             {
-                var user = new AuthentificationDto
+                var user = new AuthenticationDto
                 {
                     Email = model.Email,
                     Password = BCrypt.Net.BCrypt.HashPassword(model.Password)
                 };
-                user = _authenticationService.CreateAuthentification(user);
+                user = _authenticationService.CreateAuthentication(user);
 
 
                 var address = new AddressDto()
@@ -64,25 +64,14 @@ namespace BLL.Services
                     
                     IdUserType = model.IdUserType, //pas utile de stocker tout le type d'utilisateur vu l'id suffit.
                   
-                    Authentification = user,
-                    IdAuthentification = user.IdAuthentification,
-                    Address = address,
+                    //Authentication = user,
+                    IdAuthentication = user.IdAuthentication,
+                    //Address = address,
                     IdAddress = address.IdAddress,
-                    IdUser = user.IdAuthentification,
+                    IdUser = user.IdAuthentication,
                 };
                 userDetails = _userService.CreateUser(userDetails);
 
-                // Set the UserDetails navigation property on the user
-                user.User = userDetails;
-                //_context.Users.Add(UserMapper.MapToEntity(userDetails));
-
-                // Add the user (including user details) to the database
-                //_context.Authentifications.Add(AuthenticationMapper.MapToEntity(user));
-
-                // Save the changes
-                //await _context.SaveChangesAsync();
-                
-                // Return success
                 return user;
 
             }

@@ -14,18 +14,18 @@ namespace BLL.Services
 {
     public class LoginService : ILoginService
     {
-        private readonly IAuthentificationRepository _authentificationRepository;
+        private readonly IAuthenticationRepository _authentificationRepository;
 
-        public LoginService(IAuthentificationRepository authentificationRepository)
+        public LoginService(IAuthenticationRepository authentificationRepository)
         {
             _authentificationRepository = authentificationRepository;
         }
 
-        public AuthentificationDto Authenticate(LoginModel loginModel)
+        public AuthenticationDto Authenticate(LoginModel loginModel)
         {
             try
             {
-                var existingAuthentification = _authentificationRepository.GetAuthentificationByEmail(loginModel.Email);
+                var existingAuthentification = _authentificationRepository.GetAuthenticationByEmail(loginModel.Email);
                 if (existingAuthentification == null || !BCrypt.Net.BCrypt.Verify(loginModel.Password, existingAuthentification.Password))
                 {
                     throw new Exception("Email ou mot de passe incorrect.");

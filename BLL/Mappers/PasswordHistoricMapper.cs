@@ -12,8 +12,8 @@ namespace BLL.Mappers
                 IdHistoric = passwordHistoric.IdHistoric,
                 Password = passwordHistoric.Password,
                 UpdateDate = passwordHistoric.UpdateDate,
-                IdAuthentification = passwordHistoric.IdAuthentification,
-                Authentification = AuthenticationMapper.MapToDto(passwordHistoric.Authentification)
+                IdAuthentication = passwordHistoric.IdAuthentication,
+                Authentication = AuthenticationMapper.MapToDto(passwordHistoric.Authentication)
             };
         }
 
@@ -24,8 +24,8 @@ namespace BLL.Mappers
                 IdHistoric = passwordHistoricDto.IdHistoric,
                 Password = passwordHistoricDto.Password,
                 UpdateDate = passwordHistoricDto.UpdateDate,
-                IdAuthentification = passwordHistoricDto.IdAuthentification,
-                Authentification = AuthenticationMapper.MapToEntity(passwordHistoricDto.Authentification)
+                IdAuthentication = passwordHistoricDto.IdAuthentication,
+                Authentication = AuthenticationMapper.MapToEntity(passwordHistoricDto.Authentication)
             };
         }
     }

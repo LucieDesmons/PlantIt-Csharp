@@ -1,5 +1,5 @@
 ﻿using BLL.Interfaces;
-using DATA.DAL.DbContextt;
+using DATA.DAL.Context;
 using DATA.DTO;
 using DATA.DTO.custom;
 using Microsoft.AspNetCore.Mvc;
@@ -63,14 +63,14 @@ namespace API.Controllers
             return Ok(new
             {
                 token = new JwtSecurityTokenHandler().WriteToken(token),
-                existing_authentication,
+                user = existing_authentication,
             });
         }
 
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterModel model)
         {
-            var existingUser = _context.Authentifications.FirstOrDefault(u => u.Email == model.Email);
+            var existingUser = _context.Authentications.FirstOrDefault(u => u.Email == model.Email);
             if (existingUser != null)
             {
                 return BadRequest("Username is already taken");
@@ -98,7 +98,7 @@ namespace API.Controllers
             return Ok(new
             {
                 token = new JwtSecurityTokenHandler().WriteToken(token),
-                user,
+                user = user.Result,
             });
         }
 

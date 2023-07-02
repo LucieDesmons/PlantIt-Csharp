@@ -23,13 +23,13 @@ public partial class User
 
     public int IdUserType { get; set; }
 
-    public int IdAuthentification { get; set; }
+    public int IdAuthentication { get; set; }
 
-    public virtual Address Address { get; set; } 
+    public virtual Address Address { get; set; } = null!;
 
-    public virtual Authentification Authentification { get; set; }
+    public virtual Authentication Authentication { get; set; } = null!;
 
-    public virtual UserType UserType { get; set; } 
+    public virtual UserType UserType { get; set; } = null!;
 
     public virtual ICollection<BankDetail>? BankDetailsCollection { get; set; } = new List<BankDetail>();
 

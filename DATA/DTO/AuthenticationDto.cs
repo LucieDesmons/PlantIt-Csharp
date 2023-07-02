@@ -2,9 +2,9 @@
 
 namespace DATA.DTO
 {
-    public class AuthentificationDto
+    public class AuthenticationDto
     {
-        public int IdAuthentification { get; set; }
+        public int IdAuthentication { get; set; }
 
         [Required]
         [EmailAddress]
@@ -14,7 +14,5 @@ namespace DATA.DTO
         public string Password { get; set; }
 
         public List<PasswordHistoricDto> PasswordHistoricCollection { get; set; }
-
-        public UserDto User { get; set; }
     }
 }

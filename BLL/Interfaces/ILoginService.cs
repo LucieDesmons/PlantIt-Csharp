@@ -10,7 +10,7 @@ namespace BLL.Interfaces
 {
     public interface ILoginService
     {
-        AuthentificationDto Authenticate(LoginModel loginModel);
+        AuthenticationDto Authenticate(LoginModel loginModel);
 
     }
 }

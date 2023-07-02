@@ -1,14 +1,15 @@
-﻿using DATA.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DATA.DAL.Entities;
+using DATA.DTO;
 
-namespace BLL.Interfaces
+namespace BLL.Services
 {
     public interface IUserService
     {
+        UserDto GetUserById(int userId);
+        List<UserDto> GetAllUsers();
         UserDto CreateUser(UserDto userDto);
+        //User CreateUser(UserDto userDto);
+        UserDto UpdateUser(UserDto userDto);
+        void DeleteUser(int userId);
     }
 }

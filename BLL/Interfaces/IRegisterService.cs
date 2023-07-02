@@ -9,6 +9,6 @@ namespace BLL.Interfaces
 {
     public interface IRegisterService
     {
-        Task<AuthentificationDto> RegisterUser(RegisterModel model);
+        Task<AuthenticationDto> RegisterUser(RegisterModel model);
     }
 }

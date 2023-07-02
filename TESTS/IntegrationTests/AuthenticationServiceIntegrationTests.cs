@@ -1,5 +1,5 @@
 ﻿using BLL.Services;
-using DATA.DAL.DbContextt;
+using DATA.DAL.Context;
 using DATA.DAL.Repositories;
 using DATA.DTO;
 
@@ -9,70 +9,70 @@ namespace TESTS.IntegrationTests
     {
         private PlantItContext _dbContext;
         private AuthenticationService _authenticationService;
-        private IAuthentificationRepository _authenticationRepository;
+        private IAuthenticationRepository _authenticationRepository;
 
         [SetUp]
         public void Setup()
         {
             _dbContext = new PlantItContext();
-            _authenticationRepository = new AuthentificationRepository(_dbContext);
+            _authenticationRepository = new AuthenticationRepository(_dbContext);
             _authenticationService = new AuthenticationService(_authenticationRepository);
         }
 
         [Test]
-        public void GetAuthentificationById_WhenAuthentificationExists_ReturnsAuthentificationDto()
+        public void GetAuthenticationById_WhenAuthenticationExists_ReturnsAuthenticationDto()
         {
-            int idAuthentification = 2;
+            int idAuthentication = 2;
 
-            var result = _authenticationService.GetAuthentificationById(idAuthentification);
+            var result = _authenticationService.GetAuthenticationById(idAuthentication);
 
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.IdAuthentification, Is.EqualTo(idAuthentification));
+            Assert.That(result.IdAuthentication, Is.EqualTo(idAuthentication));
 
-            Console.WriteLine("Le test GetAuthentificationById_WhenAuthentificationExists_ReturnsAuthentificationDto a réussi !");
-            Console.WriteLine("Authentification reçue :");
+            Console.WriteLine("Le test GetAuthenticationById_WhenAuthenticationExists_ReturnsAuthenticationDto a réussi !");
+            Console.WriteLine("Authentication reçue :");
             Console.WriteLine($"{result.Email} {result.Password}");
         }
 
         [Test]
-        public void UpdateAuthentification_WhenDataIsValid_UpdatesAndReturnsAuthentificationDto()
+        public void UpdateAuthentication_WhenDataIsValid_UpdatesAndReturnsAuthenticationDto()
         {
-            int idAuthentificationToUpdate = 4;
-            var existingAuthentification = _authenticationService.GetAuthentificationById(idAuthentificationToUpdate);
+            int idAuthenticationToUpdate = 4;
+            var existingAuthentication = _authenticationService.GetAuthenticationById(idAuthenticationToUpdate);
 
-            var updatedAuthentificationDto = new AuthentificationDto
+            var updatedAuthenticationDto = new AuthenticationDto
             {
-                IdAuthentification = existingAuthentification.IdAuthentification,
+                IdAuthentication = existingAuthentication.IdAuthentication,
                 Email = "updated.email@example.com",
                 Password = "updatedpassword"
             };
 
-            var updatedAuthentification = _authenticationService.UpdateAuthentification(updatedAuthentificationDto);
+            var updatedAuthentication = _authenticationService.UpdateAuthentication(updatedAuthenticationDto);
 
-            Assert.That(updatedAuthentification, Is.Not.Null);
-            Assert.That(updatedAuthentification.IdAuthentification, Is.EqualTo(updatedAuthentificationDto.IdAuthentification));
-            Assert.That(updatedAuthentification.Email, Is.EqualTo(updatedAuthentificationDto.Email));
-            Assert.That(BCrypt.Net.BCrypt.Verify(updatedAuthentificationDto.Password, updatedAuthentification.Password), Is.True);
+            Assert.That(updatedAuthentication, Is.Not.Null);
+            Assert.That(updatedAuthentication.IdAuthentication, Is.EqualTo(updatedAuthenticationDto.IdAuthentication));
+            Assert.That(updatedAuthentication.Email, Is.EqualTo(updatedAuthenticationDto.Email));
+            Assert.That(BCrypt.Net.BCrypt.Verify(updatedAuthenticationDto.Password, updatedAuthentication.Password), Is.True);
 
-            Console.WriteLine("Le test UpdateAuthentification_WhenDataIsValid_UpdatesAndReturnsAuthentificationDto a réussi !");
-            Console.WriteLine("Authentification mise à jour :");
-            Console.WriteLine($"{updatedAuthentification.Email} {updatedAuthentification.Password}");
+            Console.WriteLine("Le test UpdateAuthentication_WhenDataIsValid_UpdatesAndReturnsAuthenticationDto a réussi !");
+            Console.WriteLine("Authentication mise à jour :");
+            Console.WriteLine($"{updatedAuthentication.Email} {updatedAuthentication.Password}");
         }
 
         [Test]
-        public void DeleteAuthentification_WhenAuthentificationExists_DeletesAuthentification()
+        public void DeleteAuthentication_WhenAuthenticationExists_DeletesAuthentication()
         {
-            int idAuthentificationToDelete = 9;
+            int idAuthenticationToDelete = 9;
 
-            _authenticationService.DeleteAuthentification(idAuthentificationToDelete);
+            _authenticationService.DeleteAuthentication(idAuthenticationToDelete);
 
             // Expecting an exception to be thrown
-            var ex = Assert.Throws<Exception>(() => _authenticationService.GetAuthentificationById(idAuthentificationToDelete));
+            var ex = Assert.Throws<Exception>(() => _authenticationService.GetAuthenticationById(idAuthenticationToDelete));
 
-            Assert.That(ex.Message, Is.EqualTo($"Une erreur est survenue lors de la récupération de l'authentification."));
+            Assert.That(ex.Message, Is.EqualTo($"Une erreur est survenue lors de la récupération de l'Authentication."));
 
-            Console.WriteLine($"Le test DeleteAuthentification_WhenAuthentificationExists_DeletesAuthentification a réussi !");
-            Console.WriteLine($"Authentification avec ID {idAuthentificationToDelete} a été supprimée.");
+            Console.WriteLine($"Le test DeleteAuthentication_WhenAuthenticationExists_DeletesAuthentication a réussi !");
+            Console.WriteLine($"Authentication avec ID {idAuthenticationToDelete} a été supprimée.");
         }
 
         [Test]

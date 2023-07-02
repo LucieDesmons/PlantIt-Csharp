@@ -1,7 +1,7 @@
 ﻿using DATA.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace DATA.DAL.DbContextt;
+namespace DATA.DAL.Context;
 
 public partial class PlantItContext : DbContext
 {
@@ -17,7 +17,7 @@ public partial class PlantItContext : DbContext
 
     public virtual DbSet<Address> Addresses { get; set; }
 
-    public virtual DbSet<Authentification> Authentifications { get; set; }
+    public virtual DbSet<Authentication> Authentications { get; set; }
 
     public virtual DbSet<BankDetail> BankDetails { get; set; }
 
@@ -82,19 +82,17 @@ public partial class PlantItContext : DbContext
                 .HasColumnName("way");
         });
 
-        modelBuilder.Entity<Authentification>(entity =>
+        modelBuilder.Entity<Authentication>(entity =>
         {
-            entity.HasKey(e => e.IdAuthentification).HasName("PK_authentification_id_authentification");
+            entity.HasKey(e => e.IdAuthentication).HasName("PK_authentication_id_authentication");
 
-            entity.ToTable("authentification");
+            entity.ToTable("authentication");
 
-            entity.HasIndex(e => e.Email, "AK_authentification_login_UNIQUE").IsUnique();
+            entity.HasIndex(e => e.Email, "AK_authentication_login_UNIQUE").IsUnique();
 
-            entity.HasIndex(e => e.Password, "AK_authentification_password_UNIQUE").IsUnique();
+            entity.HasIndex(e => e.Password, "AK_authentication_password_UNIQUE").IsUnique();
 
-            entity.Property(e => e.IdAuthentification)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("id_authentification");
+            entity.Property(e => e.IdAuthentication).HasColumnName("id_authentication");
             entity.Property(e => e.Email)
                 .HasMaxLength(80)
                 .IsUnicode(false)
@@ -113,13 +111,11 @@ public partial class PlantItContext : DbContext
 
             entity.HasIndex(e => e.IdUser, "fk_bank_details_user1_idx");
 
-            entity.Property(e => e.IdBankDetails)
-                .ValueGeneratedNever()
-                .HasColumnName("id_bank_betails");
+            entity.Property(e => e.IdBankDetails).HasColumnName("id_bank_details");
             entity.Property(e => e.Details)
                 .HasMaxLength(50)
                 .IsUnicode(false)
-                .HasColumnName("details");
+                .HasColumnName("bank_details");
             entity.Property(e => e.IdUser).HasColumnName("id_user");
 
             entity.HasOne(d => d.User).WithMany(p => p.BankDetailsCollection)
@@ -310,10 +306,10 @@ public partial class PlantItContext : DbContext
 
             entity.HasIndex(e => e.IdHistoric, "AK_password_historic_idHistoric_UNIQUE").IsUnique();
 
-            entity.HasIndex(e => e.IdAuthentification, "fk_password_historic_authentification1_idx");
+            entity.HasIndex(e => e.IdAuthentication, "fk_password_historic_authentication1_idx");
 
             entity.Property(e => e.IdHistoric).HasColumnName("id_historic");
-            entity.Property(e => e.IdAuthentification).HasColumnName("authentification_id");
+            entity.Property(e => e.IdAuthentication).HasColumnName("id_authentication");
             entity.Property(e => e.Password)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -322,10 +318,10 @@ public partial class PlantItContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("update_date");
 
-            entity.HasOne(d => d.Authentification).WithMany(p => p.PasswordHistoricCollection)
-                .HasForeignKey(d => d.IdAuthentification)
+            entity.HasOne(d => d.Authentication).WithMany(p => p.PasswordHistoricCollection)
+                .HasForeignKey(d => d.IdAuthentication)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_password_historic_authentification1");
+                .HasConstraintName("FK_password_historic_authentication1");
         });
 
         modelBuilder.Entity<Picture>(entity =>
@@ -523,10 +519,9 @@ public partial class PlantItContext : DbContext
 
             entity.HasIndex(e => e.IdUserType, "fk_User_UserType_idx");
 
-            entity.HasIndex(e => e.IdAuthentification, "fk_user_authentification1_idx");
+            entity.HasIndex(e => e.IdAuthentication, "fk_user_authentication1_idx");
 
             entity.Property(e => e.IdUser).HasColumnName("id_user");
-            entity.Property(e => e.IdAuthentification).HasColumnName("id_authentification");
             entity.Property(e => e.Degree)
                 .HasMaxLength(30)
                 .IsUnicode(false)
@@ -540,6 +535,7 @@ public partial class PlantItContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("hobbies");
             entity.Property(e => e.IdAddress).HasColumnName("id_address");
+            entity.Property(e => e.IdAuthentication).HasColumnName("id_authentication");
             entity.Property(e => e.IdUserType).HasColumnName("id_user_type");
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
@@ -554,15 +550,15 @@ public partial class PlantItContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("specialization");
 
-            entity.HasOne(d => d.Address).WithOne(p => p.User)
-                .HasForeignKey<Address>(d => d.IdAddress)
+            entity.HasOne(d => d.Address).WithMany(p => p.UserCollection)
+                .HasForeignKey(d => d.IdAddress)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_User_Address1");
 
-            entity.HasOne(d => d.Authentification).WithOne(p => p.User)
-                .HasForeignKey<Authentification>(d => d.IdAuthentification)
+            entity.HasOne(d => d.Authentication).WithMany()
+                .HasForeignKey(d => d.IdAuthentication)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_User_Authentification1");
+                .HasConstraintName("FK_user_authentication1");
 
             entity.HasOne(d => d.UserType).WithMany(p => p.UserCollection)
                 .HasForeignKey(d => d.IdUserType)

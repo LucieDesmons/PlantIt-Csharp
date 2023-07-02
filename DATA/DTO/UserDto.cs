@@ -20,11 +20,11 @@
 
         public int IdUserType { get; set; }
 
-        public int IdAuthentification { get; set; }
+        public int IdAuthentication { get; set; }
 
         public AddressDto Address { get; set; }
 
-        public AuthentificationDto Authentification { get; set; }
+        public AuthenticationDto Authentication { get; set; }
 
         public UserTypeDto UserType { get; set; }
 

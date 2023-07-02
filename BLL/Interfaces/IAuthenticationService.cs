@@ -4,12 +4,14 @@ namespace BLL.Interfaces
 {
     public interface IAuthenticationService
     {
-        AuthentificationDto GetAuthentificationById(int idAuthentification);
+        AuthenticationDto GetAuthenticationById(int idAuthentication);
 
-        AuthentificationDto CreateAuthentification(AuthentificationDto authentificationDto);
+        AuthenticationDto CreateAuthentication(AuthenticationDto authenticationDto);
 
-        AuthentificationDto UpdateAuthentification(AuthentificationDto authentificationDto);
+        AuthenticationDto UpdateAuthentication(AuthenticationDto authenticationDto);
 
-        void DeleteAuthentification(int idAuthentification);
+        void DeleteAuthentication(int idAuthentication);
+
+        AuthenticationDto Authenticate(string email, string password);
     }
 }
