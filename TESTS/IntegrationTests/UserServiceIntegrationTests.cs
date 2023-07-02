@@ -1,15 +1,9 @@
 ﻿using BLL.Mappers;
 using BLL.Services;
-using DATA.DAL.DbContextt;
 using DATA.DAL.Entities;
+using DATA.DAL.Context;
 using DATA.DAL.Repositories;
 using DATA.DTO;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TESTS.IntegrationTests
 {
@@ -19,21 +13,13 @@ namespace TESTS.IntegrationTests
         private IUserRepository _userRepository;
         private UserService _userService;
         private IUserTypeRepository _userTypeRepository;
-        private AddressRepository _addressRepository;
-        private AddressService _addressService;
-        private AuthentificationRepository _authentificationRepository;
-        private AuthenticationService _authenticationService;
 
         [SetUp]
         public void Setup()
         {
             _dbContext = new PlantItContext();
-            _addressRepository = new AddressRepository(_dbContext);
-            _addressService = new AddressService(_addressRepository);
-            _authentificationRepository = new AuthentificationRepository(_dbContext);
-            _authenticationService = new AuthenticationService(_authentificationRepository);
             _userRepository = new UserRepository(_dbContext);
-            _userService = new UserService(_userRepository, _addressService, _authenticationService);
+            _userService = new UserService(_userRepository, _dbContext);
             _userTypeRepository = new UserTypeRepository(_dbContext);
         }
 
@@ -50,10 +36,14 @@ namespace TESTS.IntegrationTests
                 Town = "Test Town"
             };
 
-            var authentication = new Authentification
+            var timestamp = DateTime.Now.Ticks;
+            var email = $"testCreateUser{timestamp}@example.com";
+            var password = $"password{timestamp}";
+
+            var authentication = new Authentication
             {
-                Email = "testCreateUser38@example.com",
-                Password = "testPassword"
+                Email = email,
+                Password = password
             };
 
             var userType = _userTypeRepository.GetUserTypeById(1);
@@ -67,7 +57,7 @@ namespace TESTS.IntegrationTests
                 Specialization = "TestSpecialization",
                 Hobbies = "TestHobbies",
                 Address = AddressMapper.MapToDto(address),
-                Authentification = AuthenticationMapper.MapToDto(authentication),
+                Authentication = AuthenticationMapper.MapToDto(authentication),
                 UserType = UserTypeMapper.MapToDto(userType)
             };
 
