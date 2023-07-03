@@ -9,10 +9,12 @@ namespace BLL.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly PlantItContext _dbContext;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, PlantItContext dbContext)
         {
             _userRepository = userRepository;
+            _dbContext = dbContext;
         }
 
         public UserDto GetUserById(int userId)
@@ -49,14 +51,22 @@ namespace BLL.Services
         {
             try
             {
-                Address address = AddressMapper.MapToEntity(userDto.Address);
-                Authentication authentication = AuthenticationMapper.MapToEntity(userDto.Authentication);
+                // Créez une entité d'authentification et stockez-la dans authenticationDto
 
-                userDto.Authentication.IdAuthentication = authentication.IdAuthentication;
-                userDto.Address.IdAddress = address.IdAddress;
+                //Address address = AddressMapper.MapToEntity(userDto.Address);
+                //Authentication authentication = AuthenticationMapper.MapToEntity(userDto.Authentication);
 
+                // Assignez l'ID d'authentification à userDto.Authentication.IdAuthentication
+                //userDto.Authentication.IdAuthentication = authentication.IdAuthentication;
+                //userDto.Address.IdAddress = address.IdAddress;
+                //userDto.UserType = UserTypeMapper.MapToDto(_userTypeRepository.GetUserTypeById(userDto.IdUserType));
+
+                // Mapper l'utilisateur
                 var user = UserMapper.MapToEntity(userDto);
 
+                Console.WriteLine($"ID de l'Authentication après création: {user.IdAuthentication} {user.IdAddress}");
+
+                // Ajouter l'utilisateur à la base de données
                 var createdUser = _userRepository.CreateUser(user);
 
                 return UserMapper.MapToDto(createdUser);
@@ -80,7 +90,7 @@ namespace BLL.Services
             return _userRepository.UpdateUser(user);
         } */
 
-        public User CreateBotanist(UserDto userDto)
+        public UserDto CreateBotanist(UserDto userDto)
         {
             var userTypeDTO = new UserTypeDto
             {
@@ -93,7 +103,8 @@ namespace BLL.Services
             user.Degree = userDto.Degree;
             user.Specialization = userDto.Specialization;
 
-            return _userRepository.UpdateUser(UserMapper.MapToEntity(user));
+            _userRepository.UpdateUser(UserMapper.MapToEntity(user));
+            return user;
         }
 
         public UserDto UpdateUser(UserDto userDto)

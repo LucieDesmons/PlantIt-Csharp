@@ -31,21 +31,21 @@ public partial class User
 
     public virtual UserType UserType { get; set; } = null!;
 
-    public virtual ICollection<BankDetail> BankDetailsCollection { get; set; } = new List<BankDetail>();
+    public virtual ICollection<BankDetail>? BankDetailsCollection { get; set; } = new List<BankDetail>();
 
-    public virtual ICollection<Conversation> ConversationUser1Collection { get; set; } = new List<Conversation>();
+    public virtual ICollection<Conversation>? ConversationUser1Collection { get; set; } = new List<Conversation>();
 
-    public virtual ICollection<Conversation> ConversationUser2Collection { get; set; } = new List<Conversation>();
+    public virtual ICollection<Conversation>? ConversationUser2Collection { get; set; } = new List<Conversation>();
 
-    public virtual ICollection<CreatedBy> CreatedByCollection { get; set; } = new List<CreatedBy>();
+    public virtual ICollection<CreatedBy>? CreatedByCollection { get; set; } = new List<CreatedBy>();
 
-    public virtual ICollection<Maintenance> MaintenanceCollection { get; set; } = new List<Maintenance>();
+    public virtual ICollection<Maintenance>? MaintenanceCollection { get; set; } = new List<Maintenance>();
 
-    public virtual ICollection<Manage> ManageBotanistCollection { get; set; } = new List<Manage>();
+    public virtual ICollection<Manage>? ManageBotanistCollection { get; set; } = new List<Manage>();
 
-    public virtual ICollection<Manage> ManageCustomerCollection { get; set; } = new List<Manage>();
+    public virtual ICollection<Manage>? ManageCustomerCollection { get; set; } = new List<Manage>();
 
-    public virtual ICollection<Plant> PlantCollection { get; set; } = new List<Plant>();
+    public virtual ICollection<Plant>? PlantCollection { get; set; } = new List<Plant>();
 
-    public virtual ICollection<UserHistoric> UserHistoricCollection { get; set; } = new List<UserHistoric>();
+    public virtual ICollection<UserHistoric>? UserHistoricCollection { get; set; } = new List<UserHistoric>();
 }

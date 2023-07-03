@@ -41,7 +41,7 @@ namespace BLL.Services
             try
             {
                 // Hasher le mot de passe avant de l'enregistrer
-                authenticationDto.Password = HashPassword(authenticationDto.Password);
+                //authenticationDto.Password = HashPassword(authenticationDto.Password);
 
                 var createdAuthentication = _authenticationRepository.CreateAuthentication(AuthenticationMapper.MapToEntity(authenticationDto));
                 Console.WriteLine($"ID après insertion: {createdAuthentication.IdAuthentication}");
