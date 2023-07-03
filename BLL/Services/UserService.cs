@@ -6,15 +6,13 @@ using DATA.DTO;
 
 namespace BLL.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        private readonly PlantItContext _dbContext;
 
-        public UserService(IUserRepository userRepository, PlantItContext dbContext)
+        public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
-            _dbContext = dbContext;
         }
 
         public UserDto GetUserById(int userId)
@@ -47,28 +45,21 @@ namespace BLL.Services
             }
         }
 
-        public User CreateUser(UserDto userDto)
+        public UserDto CreateUser(UserDto userDto)
         {
             try
             {
-                // Créez une entité d'authentification et stockez-la dans authenticationDto
-
                 Address address = AddressMapper.MapToEntity(userDto.Address);
                 Authentication authentication = AuthenticationMapper.MapToEntity(userDto.Authentication);
 
-                // Assignez l'ID d'authentification à userDto.Authentication.IdAuthentication
                 userDto.Authentication.IdAuthentication = authentication.IdAuthentication;
                 userDto.Address.IdAddress = address.IdAddress;
 
-                // Mapper l'utilisateur
                 var user = UserMapper.MapToEntity(userDto);
 
-                Console.WriteLine($"ID de l'Authentication après création: {user.IdAuthentication} {user.IdAddress}");
-
-                // Ajouter l'utilisateur à la base de données
                 var createdUser = _userRepository.CreateUser(user);
 
-                return createdUser;
+                return UserMapper.MapToDto(createdUser);
             }
             catch (Exception ex)
             {
@@ -102,7 +93,7 @@ namespace BLL.Services
             user.Degree = userDto.Degree;
             user.Specialization = userDto.Specialization;
 
-            return _userRepository.UpdateUser(user);
+            return _userRepository.UpdateUser(UserMapper.MapToEntity(user));
         }
 
         public UserDto UpdateUser(UserDto userDto)
