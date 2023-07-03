@@ -1,0 +1,17 @@
+nav {
+  height: 20vh;
+  width: 100vw;
+}
+
+nav > ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+li {
+  height: 50%;
+  width: 25%;
+  background-color: black;
+  color: white;
+}
