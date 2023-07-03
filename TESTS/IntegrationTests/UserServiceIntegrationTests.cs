@@ -19,7 +19,7 @@ namespace TESTS.IntegrationTests
         {
             _dbContext = new PlantItContext();
             _userRepository = new UserRepository(_dbContext);
-            _userService = new UserService(_userRepository, _dbContext);
+            _userService = new UserService(_userRepository);
             _userTypeRepository = new UserTypeRepository(_dbContext);
         }
 
