@@ -1,0 +1,50 @@
+.box-container {
+  height: 250px;
+  width: 250px;
+  border: 2px solid black;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  display: grid;
+  grid-template-columns: 5% 15% 60% 15% 5%;
+  grid-template-rows: 5% 15% 60% 15% 5%;
+  place-items: center;
+}
+
+.name-container {
+  grid-row: 4;
+  grid-column: 2 / span 3;
+  place-self: stretch;
+  margin-top: 10px;
+  border: 2px solid black;
+}
+
+.img-container {
+  background-color: grey;
+  border-radius: 10px;
+  grid-column: 2 / span 3;
+  grid-row: 3;
+  place-self: stretch;
+  display: grid;
+  place-content: center;
+}
+
+button {
+  height: 30px;
+  width: 30px;
+  border: none;
+  border-radius: 50%;
+}
+
+.minus {
+  background-color: red;
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 2;
+}
+.add {
+  background-color: lime;
+  grid-column: 4 / span 1;
+  grid-row: 1 / span 2;
+}
+
+button:hover {
+  transform: scale(0.8);
+}

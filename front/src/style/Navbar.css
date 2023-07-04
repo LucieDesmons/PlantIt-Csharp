@@ -1,0 +1,22 @@
+nav {
+  height: 100%;
+  width: 12vw;
+  background-color: #6FAC31;
+  position : absolute;
+  left: 0;
+  top: 0;
+}
+
+nav > ul {
+  display: block;
+  justify-content: space-around;
+  align-items: center;
+}
+
+li {
+  height: 50%;
+  width: 75%;
+  margin-top: 2rem;
+  background-color: #FF906B;
+  color: white;
+}

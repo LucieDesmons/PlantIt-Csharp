@@ -249,3 +249,6 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/BLL/obj/Debug/net6.0/BLL.csproj.AssemblyReference.cache
+/TESTS/obj/Debug/net6.0/TESTS.csproj.AssemblyReference.cache
+/.gitignore
