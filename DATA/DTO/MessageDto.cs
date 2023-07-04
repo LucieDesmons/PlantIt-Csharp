@@ -11,5 +11,6 @@
         public int IdConversation { get; set; }
 
         public ConversationDto Conversation { get; set; }
+        public int IdSender { get; set; }
     }
 }

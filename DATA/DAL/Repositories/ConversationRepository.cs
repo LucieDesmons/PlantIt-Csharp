@@ -1,5 +1,6 @@
 ﻿using DATA.DAL.Context;
 using DATA.DAL.Entities;
+using DATA.DTO;
 
 namespace DATA.DAL.Repositories
 {
@@ -10,6 +11,9 @@ namespace DATA.DAL.Repositories
         Conversation CreateConversation(Conversation conversation);
         Conversation UpdateConversation(Conversation conversation);
         void DeleteConversation(Conversation conversation);
+        IEnumerable<Conversation> GetConversationsOFUser(int userId);
+        Conversation CreateConversation(int senderId, int receiverId);
+        bool ConversationExist(int senderId, int receiverId);
     }
 
     public class ConversationRepository : IConversationRepository
@@ -49,6 +53,35 @@ namespace DATA.DAL.Repositories
         {
             _dbContext.Conversations.Remove(conversation);
             _dbContext.SaveChanges();
+        }
+
+        public IEnumerable<Conversation> GetConversationsOFUser(int userId)
+        {
+            return _dbContext.Conversations.Where(c => c.IdUser2 == userId || c.IdUser1 == userId);
+        }
+
+        public Conversation CreateConversation(int senderId, int receiverId)
+        {
+            try
+            {
+                Conversation newConv = new Conversation()
+                {
+                    IdUser1 = senderId,
+                    IdUser2 = receiverId,
+                };
+
+                return CreateConversation(newConv);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Une erreur est survenue lors de la création d'une conversation", ex);
+            }
+        }
+
+        public bool ConversationExist(int senderId, int receiverId)
+        {
+            return _dbContext.Conversations.Any(c => c.IdUser1 == senderId && c.IdUser2 == receiverId);
         }
     }
 }

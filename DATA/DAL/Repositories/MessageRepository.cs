@@ -10,6 +10,7 @@ namespace DATA.DAL.Repositories
         Message CreateMessage(Message message);
         Message UpdateMessage(Message message);
         void DeleteMessage(Message message);
+        Message CreateMessageInConversation(Conversation conversation, int senderId, string contenu);
     }
 
     public class MessageRepository : IMessageRepository
@@ -49,6 +50,28 @@ namespace DATA.DAL.Repositories
         {
             _dbContext.Messages.Remove(message);
             _dbContext.SaveChanges();
+        }
+
+        public Message CreateMessageInConversation(Conversation conversation, int senderId, string contenu)
+        {
+            Message message = new Message()
+            {
+                IdConversation = conversation.IdConversation,
+                Label = contenu,
+                UpdateDate = DateTime.Now,
+                IdSender = senderId,
+            };
+
+            _dbContext.Messages.Add(message);
+            _dbContext.SaveChanges();
+
+            // met a jour la date du dernier message de la conversation
+            conversation.LastMessage = DateTime.Now;
+            _dbContext.Conversations.Update(conversation);
+            _dbContext.SaveChanges();
+            //_dbContext.Conversations.Where(c => c.IdConversation == conversation).First().LastMessage = DateTime.Now;
+
+            return message;
         }
     }
 }

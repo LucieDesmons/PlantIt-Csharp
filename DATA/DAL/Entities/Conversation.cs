@@ -18,4 +18,6 @@ public partial class Conversation
     public virtual ICollection<Message> MessageCollection { get; set; } = new List<Message>();
 
     public virtual ICollection<Plant> PlantCollection { get; set; } = new List<Plant>();
+
+    public DateTime? LastMessage { get; set; }
 }

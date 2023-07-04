@@ -17,19 +17,16 @@ namespace API.Controllers
         private readonly IConfiguration _configuration;
         private readonly PlantItContext _context;
         private readonly IRegisterService _registerService;
-        private readonly IAuthenticationService _authenticationService;
         private readonly ILoginService _loginService;
 
         public AuthController(IConfiguration configuration,
                               PlantItContext context,
                               IRegisterService registerService,
-                              IAuthenticationService authenticationService,
                               ILoginService loginService)
         {
             _configuration = configuration;
             _context = context;
             _registerService = registerService;
-            _authenticationService = authenticationService;
             _loginService = loginService;
         }
 
@@ -101,6 +98,5 @@ namespace API.Controllers
                 user = user.Result,
             });
         }
-
     }
 }
