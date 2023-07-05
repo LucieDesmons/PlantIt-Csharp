@@ -17,6 +17,7 @@ li {
   height: 50%;
   width: 75%;
   margin-top: 2rem;
+  align-self: center;
   background-color: #FF906B;
   color: white;
 }

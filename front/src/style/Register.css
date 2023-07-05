@@ -12,3 +12,7 @@
   flex-wrap: wrap;
   gap: 30px;
 }
+
+button {
+  background-color: green;
+}

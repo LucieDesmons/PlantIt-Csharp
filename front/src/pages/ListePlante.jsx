@@ -1,14 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import Navbar from '../components/Navbar'
 import ItemPlante from '../components/ItemPlante'
 import "../style/ItemPlante.css"
-import Navbar from '../components/Navbar'
-
 import "../style/ListePlante.css"
+//import useApi from './useApi';
 
 function ListePlante({ listePlantes }) {
+  listePlantes += [{Id: 1, Name: "Ficus"}, {Id: 2, Name: "Arbre"}, {Id: 3, Name: "Weed"}, {Id: 4, Name: "Swamp Thing"}];
+  //const { list, filter } = useApi();  //pour la connexion au backend
+  const [plants, setPlants] = useState([])
 
-  const [plants, setPlants] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9])
-
+  //FUCK !!!
+  useEffect(() => {
+    setPlants(listePlantes);
+  },[listePlantes]);
 
   return (
     <div className='page'>
