@@ -9,12 +9,10 @@ namespace BLL.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        private readonly PlantItContext _dbContext;
 
-        public UserService(IUserRepository userRepository, PlantItContext dbContext)
+        public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
-            _dbContext = dbContext;
         }
 
         public UserDto GetUserById(int userId)

@@ -8,7 +8,7 @@ namespace BLL.Services
         UserDto GetUserById(int userId);
         List<UserDto> GetAllUsers();
         UserDto CreateUser(UserDto userDto);
-        //User CreateUser(UserDto userDto);
+        UserDto CreateBotanist(UserDto userDto);
         UserDto UpdateUser(UserDto userDto);
         void DeleteUser(int userId);
     }

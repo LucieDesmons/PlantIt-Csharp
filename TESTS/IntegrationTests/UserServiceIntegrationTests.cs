@@ -24,6 +24,26 @@ namespace TESTS.IntegrationTests
         }
 
         [Test]
+        public void GetAllUsers_ReturnsListOfUsers()
+        {
+            // Act
+            var result = _userService.GetAllUsers();
+            
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result, Is.InstanceOf<List<UserDto>>());
+            Assert.That(result.Count, Is.GreaterThan(0));
+
+            Console.WriteLine("Le test GetAllUsers_ReturnsListOfUsers a réussi !");
+            Console.WriteLine("Liste des users :");
+
+            foreach (var user in result)
+            {
+                Console.WriteLine($"{user.Name} {user.IdAddress} {user.IdAuthentication}");
+            }
+        }
+
+        [Test]
         public void CreateUser_WhenUserDtoIsProvided_CreatesUserInDatabase()
         {
             // Arrange
@@ -83,6 +103,17 @@ namespace TESTS.IntegrationTests
 
             Console.WriteLine($"Le test CreateUser_WhenUserDtoIsProvided_CreatesUserInDatabase a réussi !");
             Console.WriteLine($"Utilisateur avec ID {createdUserDto.IdUser} a été créé.");
+        }
+
+        [Test]
+        public void DeleteUser_ShouldDeleteUser_WhenUserIdExists()
+        {
+            // Act
+            _userService.DeleteUser(1);
+
+            // Assert
+            var deletedUser = _dbContext.Users.Find(1);
+            Assert.That(deletedUser, Is.Null);
         }
     }
 }
