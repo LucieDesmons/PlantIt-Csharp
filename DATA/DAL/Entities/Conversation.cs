@@ -1,7 +1,10 @@
-﻿namespace DATA.DAL.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DATA.DAL.Entities;
 
 public partial class Conversation
 {
+    [Key]
     public int IdConversation { get; set; }
 
     public int IdUser1 { get; set; }

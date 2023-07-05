@@ -17,10 +17,10 @@ namespace BLL.Mappers
                 Clarity = plant.Clarity,
                 IdUser = plant.IdUser,
                 IdPlantReference = plant.IdPlantReference,
-                PlantReference = PlantReferenceMapper.MapToDto(plant.PlantReference),
-                User = UserMapper.MapToDto(plant.User),
-                ConversationCollection = plant.ConversationCollection.Select(ConversationMapper.MapToDto).ToList(),
-                PictureCollection = plant.PictureCollection.Select(PictureMapper.MapToDto).ToList()
+                PlantReference = plant.PlantReference != null ? PlantReferenceMapper.MapToDto(plant.PlantReference) : null,
+                User = plant.User != null ? UserMapper.MapToDto(plant.User) : null,
+                ConversationCollection = plant.ConversationCollection?.Select(ConversationMapper.MapToDto).ToList(),
+                PictureCollection = plant.PictureCollection?.Select(PictureMapper.MapToDto).ToList()
             };
         }
 
@@ -28,7 +28,7 @@ namespace BLL.Mappers
         {
             return new Plant
             {
-                IdPlant = plantDto.IdPlant,
+                //IdPlant = plantDto.IdPlant,
                 Name = plantDto.Name,
                 PlacePlant = plantDto.PlacePlant,
                 Container = plantDto.Container,
@@ -36,10 +36,10 @@ namespace BLL.Mappers
                 Clarity = plantDto.Clarity,
                 IdUser = plantDto.IdUser,
                 IdPlantReference = plantDto.IdPlantReference,
-                PlantReference = PlantReferenceMapper.MapToEntity(plantDto.PlantReference),
-                User = UserMapper.MapToEntity(plantDto.User),
-                ConversationCollection = plantDto.ConversationCollection.Select(ConversationMapper.MapToEntity).ToList(),
-                PictureCollection = plantDto.PictureCollection.Select(PictureMapper.MapToEntity).ToList()
+                PlantReference = plantDto.PlantReference != null ? PlantReferenceMapper.MapToEntity(plantDto.PlantReference) : null,
+                User = plantDto.User != null ? UserMapper.MapToEntity(plantDto.User) : null,
+                ConversationCollection = plantDto.ConversationCollection?.Select(ConversationMapper.MapToEntity).ToList(),
+                PictureCollection = plantDto.PictureCollection?.Select(PictureMapper.MapToEntity).ToList()
             };
         }
     }

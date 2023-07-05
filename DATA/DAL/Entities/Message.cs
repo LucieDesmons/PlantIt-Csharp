@@ -1,7 +1,10 @@
-﻿namespace DATA.DAL.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DATA.DAL.Entities;
 
 public partial class Message
 {
+    [Key]
     public int IdMessage { get; set; }
 
     public string? Label { get; set; }

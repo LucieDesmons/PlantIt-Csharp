@@ -1,7 +1,10 @@
-﻿namespace DATA.DAL.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DATA.DAL.Entities;
 
 public partial class Address
 {
+    [Key]
     public int IdAddress { get; set; }
 
     public int? Number { get; set; }
@@ -14,5 +17,5 @@ public partial class Address
 
     public string? Town { get; set; }
 
-    public virtual User User { get; set; }
+    public virtual ICollection<User> UserCollection { get; set; } = new List<User>();
 }

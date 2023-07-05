@@ -1,7 +1,10 @@
-﻿namespace DATA.DAL.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DATA.DAL.Entities;
 
 public partial class Maintenance
 {
+    [Key]
     public int IdMaintenance { get; set; }
 
     public DateTime? PredictedDate { get; set; }
