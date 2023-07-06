@@ -139,6 +139,7 @@ public partial class PlantItContext : DbContext
             entity.Property(e => e.IdConversation).HasColumnName("id_conversation");
             entity.Property(e => e.IdUser1).HasColumnName("id_user_1");
             entity.Property(e => e.IdUser2).HasColumnName("id_user_2");
+            entity.Property(e => e.LastMessage).HasColumnName("last_message");
 
             entity.HasOne(d => d.User1).WithMany(p => p.ConversationUser1Collection)
                 .HasForeignKey(d => d.IdUser1)
@@ -284,6 +285,7 @@ public partial class PlantItContext : DbContext
 
             entity.Property(e => e.IdMessage).HasColumnName("id_message");
             entity.Property(e => e.IdConversation).HasColumnName("id_conversation");
+            entity.Property(e => e.IdSender).HasColumnName("id_sender");
             entity.Property(e => e.Label)
                 .HasMaxLength(50)
                 .IsUnicode(false)

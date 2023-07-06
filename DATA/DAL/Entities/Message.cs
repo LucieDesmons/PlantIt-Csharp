@@ -14,4 +14,6 @@ public partial class Message
     public int IdConversation { get; set; }
 
     public virtual Conversation Conversation { get; set; } = null!;
+
+    public int IdSender { get; set; }
 }

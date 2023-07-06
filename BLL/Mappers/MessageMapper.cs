@@ -13,7 +13,8 @@ namespace BLL.Mappers
                 Label = message.Label,
                 UpdateDate = message.UpdateDate,
                 IdConversation = message.IdConversation,
-                Conversation = ConversationMapper.MapToDto(message.Conversation)
+                //Conversation = message.Conversation != null ? ConversationMapper.MapToDto(message.Conversation) : null,
+                IdSender = message.IdSender,
             };
         }
 
@@ -25,7 +26,8 @@ namespace BLL.Mappers
                 Label = messageDto.Label,
                 UpdateDate = messageDto.UpdateDate,
                 IdConversation = messageDto.IdConversation,
-                Conversation = ConversationMapper.MapToEntity(messageDto.Conversation)
+                Conversation = ConversationMapper.MapToEntity(messageDto.Conversation),
+                IdSender = messageDto.IdSender,
             };
         }
     }

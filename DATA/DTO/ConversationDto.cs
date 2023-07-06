@@ -15,5 +15,7 @@
         public List<MessageDto> MessageCollection { get; set; }
 
         public List<PlantDto> PlantCollection { get; set; }
+ 
+        public DateTime? LastMessage { get; set; }
     }
 }
