@@ -6,11 +6,11 @@ import "../style/ListePlante.css"
 
 function ListePlante({ listePlantes }) {  //virer { listePlantes }
   listePlantes = [
-    {imagePlante: "/images/rose.jpg", Name: "Rose"},
-    {imagePlante: "/images/tulipe.jpg", Name: "Tulipe"},
-    {imagePlante: "/images/baobab.jpg", Name: "Baobab"},
-    {imagePlante: "/images/calypso.jpg", Name: "Calypso"},
-    {imagePlante: "/images/monstera.jpg", Name: "Monstera Deliciosa"},
+    {imagePlante: "./images/rose.jpg", Name: "Rose"},
+    {imagePlante: "./images/tulipe.jpg", Name: "Tulipe"},
+    {imagePlante: "./images/baobab.jpg", Name: "Baobab"},
+    {imagePlante: "./images/calypso.jpg", Name: "Calypso"},
+    {imagePlante: "./images/monstera.jpg", Name: "Monstera Deliciosa"},
 ];
 
   //permet de pas tout planter si listePlantes arrive vide
