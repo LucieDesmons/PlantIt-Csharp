@@ -1,20 +1,21 @@
 import { useState, useCallback } from 'react';
 import axios from 'axios';
-import useToken from '../auth/useToken';
 
-export default function useApi(apiUrl = "localhost:5032") {
+export default function useApi() {
   const [list, setList] = useState([]);
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { token } = useToken();
-
+  const urlAuth = "localhost:5032/auth";
+  const urlListe = "localhost:5032/Plant/plants";
+/*
   // Define POST filter request to pass advanced parameters
-  const filter = useCallback(async (klass = "Crypto", data) => {
+  const filter = Auth(async (klass = "ListePlante", data) => {
     try {
-      const res = await axios.post(${apiUrl}/filter/${klass}, data, {
+      const res = await axios.post({urlAuth}/filter/{klass}, data, {
         headers: {
-          'Authorization': Bearer ${token},
+          'Authorization': Bearer {token},
           'Content-Type': 'application/json'
         }
       });
@@ -26,5 +27,5 @@ export default function useApi(apiUrl = "localhost:5032") {
       setError(err);
       setLoading(false);
     }
-  }, [token, apiUrl, setList]);
+  }, [token, apiUrl, setList]);*/
 }

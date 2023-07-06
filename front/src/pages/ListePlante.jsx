@@ -3,17 +3,22 @@ import Navbar from '../components/Navbar'
 import ItemPlante from '../components/ItemPlante'
 import "../style/ItemPlante.css"
 import "../style/ListePlante.css"
-//import useApi from './useApi';
 
-function ListePlante({ listePlantes }) {
-  listePlantes += [{Id: 1, Name: "Ficus"}, {Id: 2, Name: "Arbre"}, {Id: 3, Name: "Weed"}, {Id: 4, Name: "Swamp Thing"}];
-  //const { list, filter } = useApi();  //pour la connexion au backend
-  const [plants, setPlants] = useState([])
+function ListePlante({ listePlantes }) {  //virer { listePlantes }
+  listePlantes = [
+    {imagePlante: "/images/rose.jpg", Name: "Rose"},
+    {imagePlante: "/images/tulipe.jpg", Name: "Tulipe"},
+    {imagePlante: "/images/baobab.jpg", Name: "Baobab"},
+    {imagePlante: "/images/calypso.jpg", Name: "Calypso"},
+    {imagePlante: "/images/monstera.jpg", Name: "Monstera Deliciosa"},
+];
 
-  //FUCK !!!
-  useEffect(() => {
-    setPlants(listePlantes);
-  },[listePlantes]);
+  //permet de pas tout planter si listePlantes arrive vide
+  if (listePlantes == null) {
+    listePlantes = [{imagePlante: "", Name: "NOM_PLANTE"}];
+  }
+
+  const [plants, setPlants] = useState(listePlantes)
 
   return (
     <div className='page'>
